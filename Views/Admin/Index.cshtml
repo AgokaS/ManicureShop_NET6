@@ -1,0 +1,26 @@
+@model IEnumerable<ManicureShop.Models.Product>
+@{
+    ViewData["Title"] = "Админ-панель";
+}
+<h2>Админ-панель</h2>
+<p><a href="/Admin/Create">Добавить товар</a></p>
+<table>
+    <thead><tr><th>Id</th><th>Название</th><th>Цена</th><th></th></tr></thead>
+    <tbody>
+    @foreach(var p in Model)
+    {
+        <tr>
+            <td>@p.Id</td>
+            <td>@p.Name</td>
+            <td>@p.Price</td>
+            <td>
+                <a href="/Admin/Edit/@p.Id">Ред.</a>
+                <form method="post" asp-action="Delete" style="display:inline">
+                    <input type="hidden" name="id" value="@p.Id" />
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

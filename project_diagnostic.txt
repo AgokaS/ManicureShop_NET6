@@ -1,0 +1,55 @@
+]633;E;echo "=== ДИАГНОСТИКА ПРОЕКТА MANICURESHOP ===";689c48a0-2e45-4f0c-a739-f470b2bae49c]633;C=== ДИАГНОСТИКА ПРОЕКТА MANICURESHOP ===
+
+1. СТРУКТУРА ПРОЕКТА:
+-------------------
+./Program.cs
+./Views/Admin/Create.cshtml
+./Views/Admin/Index.cshtml
+./Views/Cart/Index.cshtml
+./Views/Home/Index.cshtml
+./Views/Orders/Index.cshtml
+./Views/Products/Details.cshtml
+./Views/Products/Index.cshtml
+./Views/Shared/_Layout.cshtml
+./wwwroot/css/site.css
+
+2. КЛЮЧЕВЫЕ ФАЙЛЫ:
+----------------
+_ViewStart.cshtml:
+
+_Layout.cshtml (первые 20 строк):
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - ManicureShop</title>
+    <link rel="stylesheet" href="~/css/site.css" />
+    <style>
+        /* Добавим базовые стили если site.css отсутствует */
+        body { margin: 0; font-family: Arial, sans-serif; }
+        header { background: #e91e63; color: white; padding: 1rem 0; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+        nav a { color: white; text-decoration: none; margin: 0 10px; }
+        nav a:hover { text-decoration: underline; }
+        .products { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; margin: 20px 0; }
+        .product-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center; }
+    </style>
+</head>
+<body>
+    <header>
+
+3. ПРОВЕРКА VIEWS:
+----------------
+./Views/Home/Index.cshtml - СУЩЕСТВУЕТ
+@model IEnumerable<ManicureShop.Models.Product>
+@{
+
+./Views/Products/Index.cshtml - СУЩЕСТВУЕТ
+@model IEnumerable<ManicureShop.Models.Product>
+@{
+
+./Views/Cart/Index.cshtml - СУЩЕСТВУЕТ
+@model List<ManicureShop.Models.CartItem>
+@{
+

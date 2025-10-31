@@ -1,0 +1,24 @@
+@model ManicureShop.Models.Product
+@{
+    ViewData["Title"] = "Добавить товар";
+}
+<h2>Добавить товар</h2>
+<form asp-action="Create" method="post" enctype="multipart/form-data">
+    <div>
+        <label>Название</label>
+        <input asp-for="Name" />
+    </div>
+    <div>
+        <label>Описание</label>
+        <textarea asp-for="Description"></textarea>
+    </div>
+    <div>
+        <label>Цена</label>
+        <input asp-for="Price" />
+    </div>
+    <div>
+        <label>Изображение</label>
+        <input type="file" name="imageFile" />
+    </div>
+    <button type="submit">Сохранить</button>
+</form>

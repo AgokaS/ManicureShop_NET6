@@ -1,0 +1,27 @@
+@model IEnumerable<ManicureShop.Models.Order>
+@{
+    ViewData["Title"] = "Заказы";
+}
+<h2>Заказы</h2>
+@if(!Model.Any())
+{
+    <p>Нет заказов.</p>
+}
+else
+{
+    <table>
+        <thead><tr><th>Номер</th><th>Дата</th><th>Пользователь</th><th>Сумма</th><th>Кол-во поз.</th></tr></thead>
+        <tbody>
+        @foreach(var o in Model)
+        {
+            <tr>
+                <td>@o.Id</td>
+                <td>@o.Date.ToLocalTime().ToString("g")</td>
+                <td>@o.UserId</td>
+                <td>@o.TotalPrice.ToString("C")</td>
+                <td>@(o.Items?.Sum(i => i.Quantity) ?? 0)</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}

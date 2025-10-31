@@ -1,0 +1,22 @@
+@model IEnumerable<ManicureShop.Models.Product>
+@{
+    ViewData["Title"] = "Каталог товаров";
+}
+<h2>Каталог услуг</h2>
+
+<div class="products">
+    @foreach(var p in Model)
+    {
+        <div class="product-card">
+            <img src="@(p.ImagePath ?? "/images/no-image.png")" alt="@p.Name" />
+            <h3>@p.Name</h3>
+            <p>@p.Description</p>
+            <p><strong>@p.Price.ToString("C")</strong></p>
+            <form method="post" asp-controller="Cart" asp-action="AddToCart">
+                <input type="hidden" name="productId" value="@p.Id" />
+                <button type="submit">В корзину</button>
+            </form>
+            <a href="/Products/Details/@p.Id" class="btn">Подробнее</a>
+        </div>
+    }
+</div>

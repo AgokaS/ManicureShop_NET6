@@ -1,0 +1,44 @@
+@model List<ManicureShop.Models.CartItem>
+@{
+    ViewData["Title"] = "Корзина";
+}
+<h2>Корзина</h2>
+@if (!Model.Any())
+{
+    <p>Ваша корзина пуста.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr><th>Товар</th><th>Цена</th><th>Кол-во</th><th>Сумма</th><th></th></tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price.ToString("C")</td>
+                    <td>
+                        <form method="post" asp-action="UpdateQuantity">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <input type="number" name="qty" value="@item.Quantity" min="1" />
+                            <button type="submit">Обновить</button>
+                        </form>
+                    </td>
+                    <td>@(item.Price * item.Quantity).ToString("C")</td>
+                    <td>
+                        <form method="post" asp-action="RemoveFromCart">
+                            <input type="hidden" name="productId" value="@item.ProductId" />
+                            <button type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form method="post" asp-action="Checkout">
+        <input type="hidden" name="userId" value="guest" />
+        <button type="submit">Оформить заказ</button>
+    </form>
+}
