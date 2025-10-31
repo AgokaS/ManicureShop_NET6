@@ -77,4 +77,16 @@ using (var scope = app.Services.CreateScope())
     }
 }
 
-app.Run("http://localhost:5000");
+// Конфигурируемый порт - берем из переменной окружения или используем 5000 по умолчанию
+var port = Environment.GetEnvironmentVariable("ASPNETCORE_HTTP_PORTS") ?? 
+           Environment.GetEnvironmentVariable("ASPNETCORE_URLS")?.Split(";").FirstOrDefault()?.Split(":").Last() ??
+           "5000";
+
+// Запускаем приложение
+if (args.Contains("--ensure-created"))
+{
+    Console.WriteLine("✅ Database ensured created. Exiting.");
+    return;
+}
+
+app.Run($"http://0.0.0.0:{port}");

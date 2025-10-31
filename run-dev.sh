@@ -25,12 +25,12 @@ mkdir -p wwwroot/images
 
 # Создаем заглушку для изображений
 echo "Создание заглушки для изображений..."
-cat > wwwroot/images/no-image.png << 'EOF'
+cat > wwwroot/images/no-image.png << 'IMGEOF'
 <svg width="150" height="150" xmlns="http://www.w3.org/2000/svg">
   <rect width="100%" height="100%" fill="#f4f4f4"/>
   <text x="50%" y="50%" text-anchor="middle" dy="0.35em" font-family="Arial" font-size="14" fill="#999">No Image</text>
 </svg>
-EOF
+IMGEOF
 
 # Собираем проект
 echo "Сборка проекта..."
@@ -41,4 +41,6 @@ echo "Запуск приложения на http://localhost:5000..."
 echo "=== Приложение запущено! ==="
 echo "Откройте в браузере: http://localhost:5000"
 echo "Для остановки нажмите Ctrl+C"
-dotnet run
+
+# Используем конфигурируемый порт через переменные окружения
+ASPNETCORE_URLS="http://localhost:5000" dotnet run
